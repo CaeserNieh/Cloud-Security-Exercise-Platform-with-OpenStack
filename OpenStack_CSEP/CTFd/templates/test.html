@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div id="chal-solves-window" class="reveal-modal" data-reveal>
+    <h3>Solved By</h3>
+    <div class="scroll-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <td><b>Name</b>
+                    </td>
+                    <td><b>Date</b>
+                    </td>
+                </tr>
+            </thead>
+            <tbody id="chal-solves-names">
+            </tbody>
+        </table>
+    </div>
+    <a class="close-reveal-modal" data-reveal-id="chal-window">&#215;</a>
+</div>
+
+<div id="chal-window" class="reveal-modal" data-reveal>
+    <div class="row">
+        <h3 class='chal-name'></h3>
+        <h4 class="chal-value"></h4>
+        <p><i><a data-reveal-id="chal-solves-window" class="chal-solves"></a></i></p>
+
+        <p><i><a class="experiment">Start Experiment</a></i></p>
+
+        <p class="chal-desc"></p>
+        
+        <input id="answer" type="text" placeholder="Key">
+        <input type="hidden" id="nonce" name="nonce" value={{ nonce }}>
+        <button id="submit-key">Submit</button>
+
+        <input id="chal-id" type="hidden">
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+    <div>
+        <h1 class="text-center">Challenges</h1>
+        <br>
+
+        <div class="large-12 columns">
+            <table id='challenges'>
+            
+            </table>
+        </div>
+        <div id="solves-graph" style="width: 90%; height: 400px; margin: 0 auto"></div>
+    </div>
+   
+{% endblock %}
+
+{% block scripts %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/c3/0.4.0/c3.min.js"></script>
+    <script src="/static/js/challenge.js"></script>
+{% endblock %}
+
+
+
+
+    <div>
+        <h1 class="text-center">Challenge 1</h1>
+        <br>
+
+        <div class="large-12 columns">
+            
+            <p>{{  file_test["name"]  }}</p>
+            <p> {{  file_test["description"]  }} </p>
+            <p> Point : {{file_test['value']}} </p>
+            <p>Please nc to 10.52.52.33 8776</p>
+            <div class="card-body">
+            <h4 class="card-title">
+                <a href="/experiment_start" title="post_title">Start Experiment</a>
+            </h4>
+            <div>
+                {{  file_test["description"]  }}
+            </div>
+        </div>
+
+        </div>
+        <div id="solves-graph" style="width: 90%; height: 400px; margin: 0 auto"></div>
+    </div>

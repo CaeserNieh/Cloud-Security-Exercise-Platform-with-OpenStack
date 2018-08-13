@@ -1,0 +1,102 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+<div class = "content-panel">
+<table class = "table table-hover">
+	<h4>Image</h4>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>UUID</th>
+		<th>minDisk</th>
+	</tr>
+	</thead>
+	<tbody>
+	{%  for data in ret_image %}
+	<tr>
+		<td>{{  data.name }}</td>
+		<td>{{ data.uuid}}</td>
+		<td>{{ data.minDisk }}</td>
+	</tr>
+	{%  endfor %}
+	</tbody>
+</table>
+
+<table class = "table table-hover">
+	<h4>Flavor</h4>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>VCPUS</th>
+		<th>RAM</th>
+		<th>Disk</th>
+	</tr>
+	</thead>
+	<tbody>
+	{%  for data in ret_flavor %}
+	<tr>
+		<td>{{  data.name }}</td>
+		<td>{{  data.vcpu }}</td>
+		<td>{{ data.RAM}}</td>
+		<td>{{ data.Disk }}</td>
+	</tr>
+	{%  endfor %}
+	</tbody>
+</table>
+
+<table class = "table table-hover">
+	<h4>Network</h4>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>UUID</th>
+	</tr>
+	</thead>
+	<tbody>
+	{%  for data in ret_net %}
+	<tr>
+		<td>{{  data.name }}</td>
+		<td>{{ data.id }}</td>
+	</tr>
+	{%  endfor %}
+	</tbody>
+
+</table>
+
+</div>
+
+<div class = "fom">
+<h3>New Server Detail</h3>
+<form method="POST" action="/admin/create_server" enctype="multipart/form-data">
+	  <input type='text' name='name' placeholder='Server Name'>
+            <input type='text' name='image' placeholder='Image'>
+            <input type='text' name='flavor' placeholder='Flavor'>
+             <input type='text' name='network' placeholder='Network'>
+
+            <input type='number' name='count' placeholder='Count'><br/>
+
+            <br/>
+            <input type="file" name="files[]" multiple="multiple">
+
+            <button type='submit'>Create</button>
+  </form>
+
+
+
+</div>
+
+<div class = "network_fom">
+<h3>Create selfservice network</h3>
+<form method="POST" action="/admin/create_network" enctype="multipart/form-data">
+	  <input type='text' name='name' placeholder='Network Name'>
+      <input type='text' name='start' placeholder='Start IP'>
+      <input type='text' name='end' placeholder='End IP'>
+      <input type='text' name='gateway' placeholder='GateWay'>
+      <button type='submit'>Create</button>
+</form>
+
+</div>
+
+{% endblock  %}

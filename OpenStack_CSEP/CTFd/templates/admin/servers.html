@@ -1,0 +1,45 @@
+{% extends "admin/base.html" %} 
+
+{% block content %}
+
+
+<div class = "content-panel">
+{%  if vm_data == 0  %}
+<h4>There is no Server</h4>
+{% else %}
+<table class = "table table-hover">
+	<h4>Servers Table</h4>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>UUID</th>
+		<th>Status</th>
+		<th>Network</th>
+		<th>IP</th>
+	</tr>
+	</thead>
+	<tbody>
+	{%  for instance in vm_data %}
+	<tr>
+		<td>{{  instance.name }}</td>
+		<td>{{ instance.uuid}}</td>
+		<td>{{ instance.status }}</td>
+		<td>{{ instance.network }}</td>
+		<td>{{ instance.IP }}</td>
+	</tr>
+	{%  endfor %}
+	</tbody>
+</table>
+{%  endif %}
+
+</div>
+
+<button type="button" onclick="location.href= '/admin/detail_server'  ">Create New Server</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+
+
