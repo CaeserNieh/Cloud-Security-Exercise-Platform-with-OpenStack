@@ -2,6 +2,7 @@ OpenStack neutronclient SDK 學習
 (https://my.oschina.net/alazyer/blog/737942)
 ===
 
+```python=
 networks = neutron.list_networks()
 """
 {
@@ -43,11 +44,12 @@ networks = neutron.list_networks()
 filters = {}
 filters["provider:physical_network"] = "external"
 networks = neutron.list_networks(**filters)
-
+```
 
 ------------
 創建network
 
+```python=
 body_data = {
     'network': {
         "name": "test_creating_network",
@@ -87,9 +89,11 @@ netw = neutron.create_network(body=body_data)
     }
 }
 """
+```
+
 -----------
 刪除network
-
+```python=
 body_data = {
     'network': {
         "name": "test_creating_network",
@@ -104,10 +108,11 @@ netw = neutron.create_network(body=body_data)
 net_dict = netw['network']
 network_id = net_dict['id']
 neutron.delete_network(network_id)
-
+```
 -------
 更新network
 
+```python=
 body_data = {
     'network': {
         "name": "test_creating_network_renew",
@@ -115,11 +120,12 @@ body_data = {
 }
 
 netw = neutron.update_network(network_id, body=body_data)
-查看所有的subnet
+```
 
 ------
 查詢所有subnet
 
+```python=
 subnets = neutron.list_subnets()
 """
 {
@@ -163,6 +169,7 @@ subnets = neutron.list_subnets()
     ]
 }
 """
+```
 
 -------
 建立subnet
@@ -214,6 +221,7 @@ ret = neutron.create_subnet(body=body_data)
 --------
 查詢所有port 
 
+```python=
 neutron.list_port()
 """
 {
@@ -261,5 +269,5 @@ neutron.list_port()
     ]
 }
 """
-
+```
 
